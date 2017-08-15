@@ -39,7 +39,7 @@ public class Application {
                 .description("This service provide endpoints to be used by the cicero app for trip planning")
                 .contact(new Contact("mario-s", "https://www.facebook.com/cicero.app.travel/", ""))
                 .license("Apache License Version 2.0")
-                .licenseUrl("https://github.com/springfox/springfox/blob/master/LICENSE")
+                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
                 .version("2.0")
                 .build();
     }
