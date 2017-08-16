@@ -1,11 +1,13 @@
 package org.cicero;
 
+import io.swagger.annotations.ApiOperation;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,7 +39,8 @@ public class GoogleController {
         return vars;
     }
 
-    @RequestMapping("/trainstations")
+    @ApiOperation(value = "Find nearby train stations")
+    @RequestMapping(value = "/trainstations", method=RequestMethod.GET)
     public String trainstations(@RequestParam(value = "lat", defaultValue = "0") Double lat,
             @RequestParam(value = "lon", defaultValue = "0") Double lon,
             @RequestParam(value = "radius", defaultValue = "500") Integer radiusInMeter) {
@@ -48,7 +51,8 @@ public class GoogleController {
         return exchanger.exchange(props.getNearbyRequest(), vars).getBody();
     }
 
-    @RequestMapping("/taxistands")
+    @ApiOperation(value = "Find nearby taxi stands")
+    @RequestMapping(value = "/taxistands", method=RequestMethod.GET)
     public String taxistands(@RequestParam(value = "lat", defaultValue = "0") Double lat,
             @RequestParam(value = "lon", defaultValue = "0") Double lon,
             @RequestParam(value = "radius", defaultValue = "500") Integer radiusInMeter) {

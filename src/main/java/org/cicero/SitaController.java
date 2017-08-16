@@ -1,5 +1,6 @@
 package org.cicero;
 
+import io.swagger.annotations.ApiOperation;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +38,8 @@ public class SitaController {
         return exchanger.exchange(url, key, params);
     }
 
-    @RequestMapping("/waittime")
+    @ApiOperation(value = "current wait time for check in process at the airport")
+    @RequestMapping(value = "/waittime", method=RequestMethod.GET)
     public String waitTime(@RequestParam(value = "airport", defaultValue = NA) String airport) {
         LOG.info("airport code: {}", airport);
         
@@ -53,7 +56,8 @@ public class SitaController {
         return exchange(url, key, newMap(airport)).getBody();
     }
 
-    @RequestMapping("/weather")
+    @ApiOperation(value = "current weather condition at the airport")
+    @RequestMapping(value = "/weather" , method=RequestMethod.GET)
     public String weather(@RequestParam(value = "airport", defaultValue = NA) String airport) {
         LOG.info("airport code: {}", airport);
 
